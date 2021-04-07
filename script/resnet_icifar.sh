@@ -1,19 +1,21 @@
 layer=$1
-dataset=cifar100
+dataset=cifar10
 tmodel_name=resnet${1}_cifar
 smodel_name=resnet${1}_cifar_dirac
-seed=$4
-procedure=$3
+seed=1
+procedure=RES_NMT
 aim=Correct_cnn_${dataset}_${smodel_name}_${layer}_$1_${procedure}_SEED_${seed}_DC_${2}_keepdownsampling
-save_dir=/cache/code/output/${dataset}/${tmodel_name}/${aim}/
-data_dir=/cache/dataset/
+save_dir=./output/${dataset}/${tmodel_name}/${aim}/
+# data_dir=/cache/dataset/
+data_dir=/home/zhfeing/datasets/cifar
+# model_dir=./output
 
 dc=$2
 
 ###############
 
 echo ${procedure}
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6 python train_dirac.py --stage CNN_NMT \
+CUDA_VISIBLE_DEVICES=0,1 python train_dirac.py --stage RES_NMT \
                        --baseline_epochs 200 \
                        --cutout_length 0 \
                        --procedure ${procedure} \
@@ -32,8 +34,9 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6 python train_dirac.py --stage CNN_NMT \
                        --kd_type margin \
                        --dis_weight 0. \
                        --lr_sch step \
-                       --dc ${dc} \
-                       --model ${model_dir} \
+                       --dc ${dc} 
+                    #    --model_dir=$model_dir \
+                    #    --model ${model_dir} \
 
                        
                        

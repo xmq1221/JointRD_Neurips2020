@@ -1,0 +1,54 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/train_dirac.py",
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "args": [
+                "--stage RES_NMT",
+                "--baseline_epochs=200",
+                "--cutout_length=0",
+                "--procedure=TA",
+                "--save_dir=./output/cifar10/TA/plain_CNN_resnet50_cifar/Correct_cnn_cifar10_resnet50_cifar_50_50_TA_SEED_1_DC_0.5_keepdownsampling",
+                "--smodel_name=resnet50_cifar",
+                "--tmodel_name=resnet50_cifar",
+                "--dataset=cifar10",
+                "--data_dir=/home/zhfeing/datasets/cifar",
+                "--seed=1",
+                "--learning_rate=0.1",
+                "--batch_size=128",
+                "--aim=Correct_cnn_cifar10_resnet50_cifar_50_50_TA_SEED_1_DC_0.5_keepdownsampling",
+                "--start_epoch=0",
+                "--alpha=0.9",
+                "--weight_decay=5e-4",
+                "--kd_type=margin",
+                "--dis_weight=0.",
+                "--lr_sch=step",
+                "--dc=0.5",
+                "--model=./output/cifar10/resnet50_cifar/Correct_cnn_cifar10_resnet50_cifar_dirac_50_50_RES_NMT_SEED_1_DC_0.0_keepdownsampling/checkpoint/Correct_cnn_cifar10_resnet50_cifar_dirac_50_50_RES_NMT_SEED_1_DC_0.0_keepdownsampling_epoch_199_RES_NMT_checkpoint.pth.tar",
+
+            ]
+        },
+        {
+            "name": "Python: test",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/models/resnetv2.py",
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "args": [
+            ]
+        },
+    ]
+}
